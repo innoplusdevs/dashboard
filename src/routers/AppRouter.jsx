@@ -4,32 +4,38 @@ import { BrowserRouter as Router, Switch } from "react-router-dom";
 import { PublicRoute } from "./PublicRoute";
 import { DashboardRoutes } from "./DashboardRoutes";
 
+import { useSelector } from "react-redux";
+
 import { LoginScreen } from "../components/Login/LoginScreen";
-import { Sidebar } from "../components/Sidebar/Sidebar";
+
+import { Layout } from 'antd';
 
 
 export const AppRouter = () => {
+  const sidebarCollapsed = useSelector(state => state.sidebar);
+
+  console.log(sidebarCollapsed, 'sidebarState');
 
   return (
     <Router>
-      <div>
-        <Sidebar />
+      <Layout>
+        <Layout style={{ marginLeft: !sidebarCollapsed ? 200 : 80, background: '#fff' }}>
+          <Switch>
+            <PublicRoute
+              exact
+              path='/login'
+              component={LoginScreen}
+            /* isAuthenticated={user.logged} */
+            />
 
-        <Switch>
-          <PublicRoute
-            exact
-            path='/login'
-            component={LoginScreen}
-          /* isAuthenticated={user.logged} */
-          />
-
-          <PublicRoute
-            path='/'
-            component={DashboardRoutes}
-          /* isAuthenticated={user.logged} */
-          />
-        </Switch>
-      </div>
+            <PublicRoute
+              path='/'
+              component={DashboardRoutes}
+            /* isAuthenticated={user.logged} */
+            />
+          </Switch>
+        </Layout>
+      </Layout>
     </Router>
   );
 };

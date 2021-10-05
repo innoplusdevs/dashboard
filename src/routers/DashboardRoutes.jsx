@@ -2,8 +2,8 @@ import { Switch, Route, Redirect } from "react-router-dom";
 
 import { Sidebar } from '../components/Sidebar/Sidebar'
 import { HomeScreen } from "../components/Home/HomeScreen";
-import { UsersScreen } from "../components/Users/UsersScreen";
-import { SettingsScreen } from "../components/Settings/SettingsScreen";
+import { ManageUsers } from "../components/Users/ManageUsers";
+import { Profile } from "../components/Profile/Profile";
 
 export const DashboardRoutes = () => {
   return (
@@ -11,8 +11,8 @@ export const DashboardRoutes = () => {
       <Sidebar />
       <Switch>
         <Route exact path='/dashboard/home' component={HomeScreen} />
-        <Route path='/dashboard/users' component={UsersScreen} />
-        <Route path='/dashboard/settings' component={SettingsScreen} />
+        <Route path='/dashboard/users' component={ManageUsers} />
+        <Route path='/dashboard/profile' component={Profile} />
 
         <Redirect to='/dashboard/home' />
       </Switch>

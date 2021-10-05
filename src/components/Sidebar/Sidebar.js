@@ -1,4 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
+
+import { Link } from "react-router-dom";
+
+import { useDispatch, useSelector } from "react-redux";
+import { sidebarCollapsed } from '../../actions/actions';
 
 import { Layout, Menu } from 'antd';
 import {
@@ -10,10 +15,16 @@ import {
 const { Sider } = Layout;
 
 export const Sidebar = () => {
-  const [collapsed, setCollapsed] = useState(false);
+  const dispatch = useDispatch();
+  const collapsed = useSelector(state => state.sidebar);
 
+  // const [collapsed, setCollapsed] = useState(false);
+  console.log(collapsed, 'collapsed Init');
+  
+  
   const toggle = () => {
-    setCollapsed(!collapsed);
+    // await setCollapsed(!collapsed);
+    dispatch(sidebarCollapsed(!collapsed));
   }
 
   return (
@@ -28,7 +39,7 @@ export const Sidebar = () => {
     >
       <Menu theme="dark" mode="inline" >
         <Menu.Item key="1" icon={<UserOutlined />}>
-          Profile
+          <Link to="/dashboard/profile">Profile</Link>
         </Menu.Item>
         <Menu.Item key="2" icon={<BarChartOutlined />}>
           Stats
