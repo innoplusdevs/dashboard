@@ -18,12 +18,8 @@ export const Sidebar = () => {
   const dispatch = useDispatch();
   const collapsed = useSelector(state => state.sidebar);
 
-  // const [collapsed, setCollapsed] = useState(false);
-  console.log(collapsed, 'collapsed Init');
-  
-  
+
   const toggle = () => {
-    // await setCollapsed(!collapsed);
     dispatch(sidebarCollapsed(!collapsed));
   }
 
@@ -48,6 +44,6 @@ export const Sidebar = () => {
           Manage users
         </Menu.Item>
       </Menu>
-    </Sider>
+    </Sider >
   );
 };
