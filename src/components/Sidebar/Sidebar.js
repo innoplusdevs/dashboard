@@ -1,16 +1,14 @@
 import React from "react";
 
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router";
 
 import { useDispatch, useSelector } from "react-redux";
 import { sidebarCollapsed } from '../../actions/actions';
 
 import { Layout, Menu } from 'antd';
-import {
-  BarChartOutlined,
-  UsergroupAddOutlined,
-  UserOutlined,
-} from '@ant-design/icons';
+import { routes } from "../../routes/routes";
+
 
 const { Sider } = Layout;
 
@@ -18,6 +16,7 @@ export const Sidebar = () => {
   const dispatch = useDispatch();
   const collapsed = useSelector(state => state.sidebar);
 
+  const { pathname } = useLocation();
 
   const toggle = () => {
     dispatch(sidebarCollapsed(!collapsed));
@@ -33,16 +32,13 @@ export const Sidebar = () => {
         left: 0,
       }}
     >
-      <Menu theme="dark" mode="inline" >
-        <Menu.Item key="1" icon={<UserOutlined />}>
-          <Link to="/dashboard/profile">Profile</Link>
-        </Menu.Item>
-        <Menu.Item key="2" icon={<BarChartOutlined />}>
-          Stats
-        </Menu.Item>
-        <Menu.Item key="3" icon={<UsergroupAddOutlined />}>
-          Manage users
-        </Menu.Item>
+      <Menu theme='dark' defaultSelectedKeys={[pathname]}>
+        {routes.map(({ name, path, icon }) => (
+          icon &&
+          <Menu.Item icon={icon} key={path}>
+            <Link to={path}>{name}</Link>
+          </Menu.Item>
+        ))}
       </Menu>
     </Sider >
   );

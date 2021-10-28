@@ -13,7 +13,7 @@ export const DashboardRoutes = () => {
       <Sidebar />
       <Layout style={{ padding: '10px', paddingTop: '1.6rem', background: '#fff' }}>
         <Switch>
-          < Route exact path='/dashboard/home' component={HomeScreen} />
+          <Route exact path='/dashboard/home' component={HomeScreen} />
           <Route path='/dashboard/users' component={ManageUsers} />
           <Route path='/dashboard/profile' component={Profile} />
 
