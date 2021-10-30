@@ -1,0 +1,10 @@
+"use strict";
+var Router = require('express').Router;
+var _a = require('../controllers/users'), usersGet = _a.usersGet, usersPut = _a.usersPut, usersPost = _a.usersPost, usersDelete = _a.usersDelete, usersPatch = _a.usersPatch;
+var router = Router();
+router.get('/', usersGet);
+router.put('/:id', usersPut);
+router.post('/', usersPost);
+router.delete('/', usersDelete);
+router.patch('/', usersPatch);
+module.exports = router;
